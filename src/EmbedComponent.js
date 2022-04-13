@@ -4,6 +4,7 @@ import { looker40sdk } from './CorsSessionHelper'
 import styled from 'styled-components'
 import {sampleQuery} from "./SampleQuery";
 import {DataProvider} from "@looker/components-data";
+import {ComponentsProvider} from "@looker/components";
 
 const PageTitle = styled.div`
   font-family: "Google Sans", "Open Sans", Arial, Helvetica, sans-serif;
@@ -29,14 +30,16 @@ export function EmbedComponent() {
     }
 
     return(
-        <DataProvider sdk={looker40sdk}>
-            <PageTitle>Visualization Component</PageTitle>
-            <Query
-                sdk={looker40sdk}
-                query={queryId}
-            >
-                <Visualization />
-            </Query>
-        </DataProvider>
+        <ComponentsProvider>
+            <DataProvider sdk={looker40sdk}>
+                <PageTitle>Visualization Component</PageTitle>
+                <Query
+                    sdk={looker40sdk}
+                    query={queryId}
+                >
+                    <Visualization />
+                </Query>
+            </DataProvider>
+        </ComponentsProvider>
     )
 }
